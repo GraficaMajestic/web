@@ -1,0 +1,230 @@
+.carrito {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+.carrito:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+/* 🔹 Título */
+.carrito h2 {
+  text-align: center;
+  color: #4b0082;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.carrito h2::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #6a00f4, #00e4d0);
+  display: block;
+  margin: 8px auto 0;
+  border-radius: 5px;
+}
+
+/* 🔹 Lista de productos */
+.carrito ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.carrito li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #ececec;
+  font-size: 17px;
+  color: #444;
+  transition: background-color 0.2s ease;
+  flex-wrap: wrap;
+}
+
+.carrito li:hover {
+  background-color: #f7f4ff;
+}
+
+.carrito li:last-child {
+  border-bottom: none;
+}
+
+/* 🔹 Botón de eliminar */
+.carrito button {
+  background: linear-gradient(135deg, #ff5f6d, #ff2d55);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(255, 95, 109, 0.3);
+}
+
+.carrito button:hover {
+  background: linear-gradient(135deg, #ff2d55, #ff5f6d);
+  transform: scale(1.05);
+  box-shadow: 0 5px 12px rgba(255, 95, 109, 0.4);
+}
+
+/* 🔹 Total */
+.carrito .total-text {
+  text-align: right;
+  font-size: 22px;
+  margin-top: 20px;
+  color: #4b0082;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* 🔹 Formulario para datos del cliente */
+.formulario {
+  margin-top: 40px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.formulario:hover {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.formulario h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #4b0082;
+  text-align: center;
+  font-weight: 700;
+}
+
+.formulario label {
+  display: block;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.formulario input[type="text"],
+.formulario input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.formulario input[type="text"]:focus,
+.formulario input[type="number"]:focus {
+  outline: none;
+  border-color: #6a00f4;
+  box-shadow: 0 0 6px rgba(106, 0, 244, 0.2);
+}
+
+/* 🔹 Radios de método de pago */
+.metodos-pago label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #444;
+  cursor: pointer;
+}
+
+.metodos-pago input[type="radio"] {
+  margin-right: 10px;
+  accent-color: #6a00f4;
+}
+
+/* 🔹 Botón Generar PDF */
+.formulario button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #6a00f4, #00e4d0);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+}
+
+.formulario button:hover {
+  transform: scale(1.03);
+  background: linear-gradient(135deg, #5a00e0, #00d0c0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* 📱 RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .carrito {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .carrito h2 {
+    font-size: 24px;
+  }
+
+  .carrito li {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 16px;
+  }
+
+  .carrito .total-text {
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .formulario {
+    padding: 20px;
+  }
+
+  .formulario h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carrito {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .carrito h2 {
+    font-size: 22px;
+  }
+
+  .formulario {
+    padding: 15px;
+  }
+
+  .formulario button {
+    font-size: 15px;
+    padding: 10px;
+  }
+}

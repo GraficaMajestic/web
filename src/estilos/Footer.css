@@ -1,0 +1,131 @@
+.contenedor-footer{
+    background-color: rgb(221, 215, 231);
+    color: black;
+}
+
+.titulo-enlace{
+    margin-right: 100px;
+}
+
+.contenedor-logo-lista{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;           
+}
+
+.contenedor-logo-lista img{
+    width: 200px;
+}
+
+.contenedor-lista{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 50px;
+}
+
+.titulo-enlace{
+    font-weight: bold;
+}
+
+.contenedor-lista ul {
+    list-style: none;
+}
+.contenedor-lista ul li a {
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+}
+.contenedor-lista ul li a:hover{
+    font-weight: bold;
+    color: rgb(35, 7, 100);
+}
+
+
+.logos-redes img{
+    width: 30px;
+    padding-left: 30px;
+}
+.contenedor-redes{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+    background-color: rgb(7, 13, 94);
+}
+
+.redes:hover{
+    transform: scale(1.1);
+}
+
+
+.derechos{
+    margin-right: 50px;
+    color: white;
+}
+
+/* 📱 RESPONSIVE DESIGN */
+@media (max-width: 900px) {
+  .contenedor-logo-lista {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .contenedor-lista {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .contenedor-lista ul {
+    padding: 0;
+  }
+
+  .contenedor-lista ul li {
+    margin: 6px 0;
+  }
+
+  .contenedor-logo-lista img {
+    width: 160px;
+  }
+
+  .titulo-enlace {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contenedor-footer {
+    padding: 30px 10px;
+  }
+
+  .contenedor-logo-lista img {
+    width: 140px;
+  }
+
+  .contenedor-lista ul li a {
+    font-size: 14px;
+  }
+
+  .logos-redes img {
+    width: 25px;
+    padding-left: 15px;
+  }
+
+  .contenedor-redes {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .derechos {
+    font-size: 13px;
+    text-align: center;
+    margin: 15px 0 0;
+  }
+}

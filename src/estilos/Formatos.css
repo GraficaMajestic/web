@@ -1,0 +1,147 @@
+.barra {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  /* Fondo con degradado elegante y brillo */
+  background: linear-gradient(135deg, #4e00c2, #8e2de2, #00e4d0);
+  background-size: 300% 300%;
+  animation: gradientMove 6s ease infinite;
+
+  padding: 0px 10px;
+  margin: 40px auto;
+  border-radius: 25px;
+  width: 90%;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Efecto sutil al pasar el mouse */
+.barra:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* Título elegante */
+.barra h1 {
+  font-family: "roboto", sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  transition: color 0.4s ease, transform 0.3s ease;
+}
+
+/* Efecto hover brillante */
+.barra h1:hover {
+  color: #ffe46b;
+  transform: scale(1.05);
+}
+
+/* Animación del degradado */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+  .menu{
+    text-align: center;
+  }
+  
+  .menu-cards {
+  font-family: "Segoe UI", sans-serif;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  place-items: center;
+  padding: 0 10px;
+}
+  
+  .menu-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    margin: 15px;
+    width: 290px;
+    max-height: 550px;
+    text-align: center;   
+  }
+  
+  .menu-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);    
+  }
+  
+  .menu-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    margin-left: 10px;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .menu-card img {
+    max-width: 100%;
+    max-height: 300px;
+  }
+  
+  .menu-about button {
+    background-color: #0088aa;
+    color: white;
+    margin: 15px 10px;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.2s;
+  }
+  
+  .menu-about button:hover {
+    background-color: #00b890;
+    transform: scale(1.05);
+  }
+  
+  /* Media Queries para hacerlo responsive */
+  @media (max-width: 1200px) {
+    .menu-cards {
+      grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .menu-cards {
+      grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas más pequeñas */
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .menu-cards {
+      grid-template-columns: repeat(1, 1fr); /* 1 columna en pantallas móviles */
+    }
+  
+    .menu-card {
+      width: 100%; /* Ocupa todo el ancho disponible */
+      margin: 10px;
+    }
+  
+    .menu-about button {
+      padding: 10px 20px;
+      font-size: 12px;
+    }
+  }

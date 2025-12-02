@@ -1,0 +1,264 @@
+:root {
+  --navbar-height: 100px;
+}
+
+.contenedor-navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  min-height: var(--navbar-height);
+  box-sizing: border-box;
+}
+
+/* Franja superior (teléfono / whatsapp / carrito) */
+.textos-navbar {
+  width: 100%;
+  background-color: rgb(19, 12, 53);
+  color: white;
+}
+
+.textos-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+  box-sizing: border-box;
+  gap: 12px;
+}
+
+.textos-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.textos-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icono-logo {
+  width: 140px;
+  height: 60px;
+}
+
+.icono-carrito {
+  width: 30px;
+  height: 30px;   
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.icono-carrito:hover {
+  transform: scale(1.1);
+}
+
+.icono {
+  width: 25px;
+  height: 25px;
+  padding: 15px;
+}
+
+.contenedor-wasap {
+  padding-right: 60px;
+}
+
+.link-wasap {
+  list-style: none;
+  text-decoration: none;
+  color: aliceblue;
+}
+
+.contenedor-numero {
+  padding-right: 60px;
+}
+
+/* numero arriba del carrito */
+.carrito-wrapper { position: relative; display: inline-block; }
+.carrito-num {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* Menú principal */
+.contenedor-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 10px 20px;
+}
+
+.contenedor-menu ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Enlaces modernos con línea degradada */
+.contenedor-menu li .link-menu {
+  font-size: 22px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.contenedor-menu li .link-menu::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #8a2be2, #00e4d0);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.contenedor-menu li .link-menu:hover {
+  color: #6a00f4;
+}
+
+.contenedor-menu li .link-menu:hover::after {
+  width: 100%;
+}
+
+/* 🔹 Buscador */
+.buscar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #f0f0f0;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.buscar .busca {
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  flex: 1;
+  border-radius: 25px 0 0 25px;
+  background: transparent;
+}
+
+.buscar .boton {
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  background: blue;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0 25px 25px 0;
+  transition: background 0.3s;
+}
+
+.buscar input[type="button"]:hover {
+  background: darkblue;
+}
+
+/* 🔹 Responsive */
+@media (max-width: 1024px) {
+  .contenedor-menu ul {
+    gap: 15px;
+  }
+
+  .contenedor-menu li .link-menu {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contenedor-navbar {
+    position: relative;
+    box-shadow: none;
+    min-height: auto;
+  }
+
+  .textos-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 10px 16px;
+  }
+
+  .textos-left {
+    justify-content: center;
+  }
+
+  .textos-right {
+    align-self: center;
+  }
+
+  .icono {
+    padding: 6px;
+  }
+
+  .icono-carrito {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+  }
+
+  .contenedor-menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contenedor-menu ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .buscar {
+    width: 90%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenedor-menu li .link-menu {
+    font-size: 18px;
+  }
+
+  .buscar .busca {
+    font-size: 12px;
+  }
+
+  .buscar .boton {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+}
