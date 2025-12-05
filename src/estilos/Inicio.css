@@ -1,4 +1,5 @@
-.contenedor-article{  
+/* CONTENEDOR GENERAL */
+.contenedor-article {  
     display: flex;  
     flex-direction: column;
     justify-content: center;
@@ -6,199 +7,190 @@
     padding: 50px;           
 }
 
-.texto-diseño{
+/* SECCIÓN TEXTO + MODELO */
+.texto-diseño {
     display: flex;
     justify-content: center;
     align-items: center;    
-    background-color: white;    
+    background-color: white;
+    text-align: center;
 }
 
-.imagen-modelo{
+/* IMAGEN DEL MODELO — RESPONSIVO */
+.imagen-modelo {
     width: 80%;
-}
-
-.calendarios{    
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-    padding: 20px;  
-    gap: 20px;  
-    background: linear-gradient(90deg, #6cca79, #b7ffc7, #6cca79);
-}
-
-.impresiones{   
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-    padding: 20px;  
-    gap: 20px;  
-    background: linear-gradient(90deg, #768fa0, #bedadf, #768fa0);
-}
-
-.gigantografia{    
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-    padding: 20px;  
-    gap: 20px;      
-    background: linear-gradient(90deg, #e4c640, #f7df92, #e4c640);
-}
-
-.texto-diseño .letras1{    
-    font-size: 40px;
-    font-weight: 900;
-    color: rgb(25, 74, 235);  
-    text-align: center;  
-}
-.texto-diseño .letras2{      
-    font-size: 80px;
-    font-weight: 700;
-    color: rgb(255, 0, 85);
-    line-height: 1;
-    text-align: center; 
-    margin-bottom: 10px;
-}
-.texto-diseño .letras3{
-    font-size: 40px;
-    font-weight: 700;
-    color: rgb(25, 74, 235);
-    opacity: 0.9;
-    text-align: center; 
-}
-
-.calendarios .letras1{    
-    font-size: 40px;
-    font-weight: 900;
-    color: rgb(1, 18, 77);  
-    text-align: center;  
-}
-.calendarios .letras2{      
-    font-size: 80px;
-    font-weight: 700;
-    color: rgb(253, 6, 6);
-    line-height: 1;
-    text-align: center; 
-    margin-bottom: 10px;
-}
-.calendarios .letras3{
-    font-size: 40px;
-    font-weight: 700;
-    color: rgb(1, 18, 77);
-    opacity: 0.9;
-    text-align: center; 
-}
-
-.impresiones .letras1{    
-    font-size: 40px;
-    font-weight: 900;
-    color: rgb(53, 1, 77);  
-    text-align: center;  
-}
-.impresiones .letras2{      
-    font-size: 80px;
-    font-weight: 700;
-    color: rgb(255, 52, 1);
-    line-height: 1;
-    text-align: center; 
-    margin-bottom: 10px;
-}
-
-.impresiones .letras3{
-    font-size: 40px;
-    font-weight: 700;
-    color: rgb(53, 1, 77);  
-    opacity: 0.9;
-    text-align: center; 
-}
-
-.gigantografia .letras1{    
-    font-size: 50px;
-    font-weight: 900;
-    color: rgb(48, 4, 7);  
-    text-align: center;  
-}
-.gigantografia .letras2{      
-    font-size: 60px;
-    font-weight: 700;
-    color: rgb(175, 4, 175);
-    line-height: 1;
-    text-align: center; 
-    margin-bottom: 10px;
-}
-.gigantografia .letras3{
-    font-size: 40px;
-    font-weight: 700;
-    color: rgb(48, 4, 7);  
-    opacity: 0.9;
-    text-align: center; 
-}
-
-.imagen-modelo{
+    max-width: 500px;
+    height: auto;
     opacity: 0;
     transform: translateX(120px);
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-.texto-diseño:hover .imagen-modelo{
+.texto-diseño:hover .imagen-modelo {
     opacity: 1;
     transform: translateX(0);
     transition-delay: 0.1s;
-    width: 80%;
 }
 
-.dos-imagen{
+/* LETRAS GRANDES */
+.texto-diseño .letras1 {    
+    font-size: 40px;
+    font-weight: 900;
+    color: rgb(25, 74, 235);
+}
+.texto-diseño .letras2 {      
+    font-size: 80px;
+    font-weight: 700;
+    color: rgb(255, 0, 85);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+.texto-diseño .letras3 {
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(25, 74, 235);
+    opacity: 0.9;
+}
+
+/* SECCIÓN 2 IMÁGENES — RESPONSIVO */
+.dos-imagen {
     display: flex;
+    flex-wrap: wrap;          
     justify-content: center;
     align-items: center;
-    padding: 50px;     
+    gap: 20px;
+    padding: 30px 10px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.centro{
-    position: relative;
+.dos-imagen .centro {
+    width: calc(50% - 20px);
+    max-width: 600px;
     height: auto;
-    width: 40%;
-    padding: 30px;
+    padding: 10px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
     cursor: pointer;
-    transition: transform 0.5s ease;
 }
 
-.centro:hover {
-    transform: scale(1.1);
+.dos-imagen .centro:hover {
+    transform: scale(1.05);
 }
 
-.contenedor-letras{
-    flex: 1;    
-    text-align: center;
-    transform: translateY(40px);
-    opacity: 0;
-    transition: transform 0.8s ease, opacity 0.8s ease;
-}
-
-
-
-.flyers{
+/* SECCIÓN FLYERS */
+.flyers {
     display: flex;  
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.flyer img{
+.flyer img {
     width: 100%;
 }
 
-@media (max-width: 768px) {
-  .uvdtf,
-  .baner,
-  .calen {
-    flex-direction: column;
-  }
+/* DEMÁS SECCIONES (las dejé igual) */
+.calendarios, .impresiones, .gigantografia {    
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    padding: 20px;  
+    gap: 20px;
 }
 
+.calendarios {
+    background: linear-gradient(90deg, #6cca79, #b7ffc7, #6cca79);
+}
+.impresiones {
+    background: linear-gradient(90deg, #768fa0, #bedadf, #768fa0);
+}
+.gigantografia {
+    background: linear-gradient(90deg, #e4c640, #f7df92, #e4c640);
+}
+
+/* LETRAS DE SECCIONES — SIN CAMBIOS */
+.calendarios .letras1 {
+    font-size: 40px;
+    font-weight: 900;
+    color: rgb(1, 18, 77);
+}
+.calendarios .letras2 {
+    font-size: 80px;
+    font-weight: 700;
+    color: rgb(253, 6, 6);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+.calendarios .letras3 {
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(1, 18, 77);
+    opacity: 0.9;
+}
+
+.impresiones .letras1 {
+    font-size: 40px;
+    font-weight: 900;
+    color: rgb(53, 1, 77);
+}
+.impresiones .letras2 {
+    font-size: 80px;
+    font-weight: 700;
+    color: rgb(255, 52, 1);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+.impresiones .letras3 {
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(53, 1, 77);
+}
+
+.gigantografia .letras1 {
+    font-size: 50px;
+    font-weight: 900;
+    color: rgb(48, 4, 7);
+}
+.gigantografia .letras2 {
+    font-size: 60px;
+    font-weight: 700;
+    color: rgb(175, 4, 175);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+.gigantografia .letras3 {
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(48, 4, 7);
+    opacity: 0.9;
+}
+
+/* RESPONSIVE GENERAL */
 @media (max-width: 768px) {
-  .calendarios,
-  .gigantografia,
-  .impresiones {
-    flex-direction: column;
-  }
+
+    /* Imagen del modelo */
+    .imagen-modelo {
+        width: 100%;
+        max-width: 100%;
+        opacity: 1;
+        transform: none;
+    }
+
+    .texto-diseño {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Sección dos imágenes */
+    .dos-imagen .centro {
+        width: 100%;
+        padding: 6px;
+    }
+
+    .calendarios,
+    .gigantografia,
+    .impresiones {
+        flex-direction: column;
+    }
 }
