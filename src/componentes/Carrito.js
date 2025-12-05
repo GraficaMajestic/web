@@ -1,144 +1,222 @@
+// Carrito.jsx
+import React, { useState, useEffect } from 'react';
 import '../estilos/Carrito.css';
-import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
 
-
 function Carrito({ cart = [], setCart, total, setTotal }) {
-  const [customerInfo, setCustomerInfo] = useState({
-    nombre: '',    
+  const initialCustomerInfo = {
+    nombre: '',
     descripcion: '',
     metodoPago: ''
-  });
-
-
-  const handlePaymentChange = (e) => {
-    setCustomerInfo({
-      ...customerInfo,
-      metodoPago: e.target.value
-    });
   };
+
+  const [customerInfo, setCustomerInfo] = useState(initialCustomerInfo);
+
+  // Asegurar que total en el estado padre esté sincronizado si el componente se monta con cart existente
+  useEffect(() => {
+    recalcTotal(cart);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // solo al montar
 
   const handleCustomerChange = (e) => {
     const { name, value } = e.target;
-    setCustomerInfo({
-      ...customerInfo,
-      [name]: value
-    });
+    setCustomerInfo((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handlePaymentChange = (e) => {
+    setCustomerInfo((prev) => ({ ...prev, metodoPago: e.target.value }));
+  };
+
+  const recalcTotal = (newCart) => {
+    const newTotal = newCart.reduce((acc, item) => {
+      const qty = Number(item.cantidad || 1);
+      const price = Number(item.price || 0);
+      return acc + qty * price;
+    }, 0);
+    setTotal(Number(newTotal.toFixed(2)));
+  };
+
+  const updateQuantity = (index, delta) => {
+    const newCart = cart.map((item, i) => {
+      if (i !== index) return item;
+      const nuevaCantidad = Math.max(0, (Number(item.cantidad || 1) + delta));
+      return { ...item, cantidad: nuevaCantidad };
+    }).filter(it => it.cantidad > 0); // eliminamos items con 0 cantidad (opcional)
+    setCart(newCart);
+    recalcTotal(newCart);
   };
 
   const removeItem = (index) => {
-    const item = cart[index];
     const newCart = cart.filter((_, i) => i !== index);
-    setTotal(total - item.price * item.cantidad);
     setCart(newCart);
+    recalcTotal(newCart);
   };
 
   const generarPDF = () => {
+    if (!cart || cart.length === 0) {
+      alert('El carrito está vacío. Agrega productos antes de generar la orden.');
+      return;
+    }
+
     const doc = new jsPDF();
 
-    // Estilo del título principal
-    doc.setFontSize(22);
-    doc.setTextColor(40, 40, 40); // Gris oscuro
-    doc.text('Detalle de la Compra', 105, 20, { align: 'center' });
+    // Título
+    doc.setFontSize(20);
+    doc.setTextColor(75, 0, 130);
+    doc.text('Detalle de la Compra', 105, 18, { align: 'center' });
 
-    // Datos del cliente
-    doc.setFontSize(16);
-    doc.setTextColor(100, 100, 100); // Gris más claro
-    doc.text('Datos del Cliente:', 10, 40);
-
-    // Información del cliente
-    doc.setFontSize(14);
-    doc.setTextColor(50, 50, 50); // Gris medio
-    doc.text(`Nombre: ${customerInfo.nombre}`, 10, 50);    
-    doc.text(`Descripcion: ${customerInfo.descripcion}`, 10, 80);
-
-    // Método de pago
-    doc.setFontSize(14);
-    doc.setTextColor(50, 50, 50);
-    doc.text(`Método de Pago: ${customerInfo.metodoPago}`, 10, 90);
-
-    // Línea divisoria
-    doc.setLineWidth(0.5);
-    doc.setDrawColor(200, 200, 200); // Color gris claro para la línea
-    doc.line(10, 95, 200, 95);
-
-    // Sección de productos
-    doc.setFontSize(16);
-    doc.setTextColor(100, 100, 100);
-    doc.text('Productos:', 10, 110);
-
-    // Detalle de los productos
+    // Datos cliente
     doc.setFontSize(12);
-    cart.forEach((item, index) => {
-      const yPosition = 120 + (index * 10);
-      doc.setTextColor(50, 50, 50); // Gris medio para los detalles de productos
-      doc.text(`${index + 1}. ${item.name}`, 10, yPosition);
-      doc.text(`Cantidad: ${item.cantidad}`, 120, yPosition);
-      doc.text(`Precio: S/${(item.price * item.cantidad).toFixed(2)}`, 160, yPosition);
+    doc.setTextColor(60, 60, 60);
+    doc.text(`Nombre: ${customerInfo.nombre || '-'}`, 14, 36);
+    doc.text(`Descripción: ${customerInfo.descripcion || '-'}`, 14, 44);
+    doc.text(`Método de Pago: ${customerInfo.metodoPago || '-'}`, 14, 52);
+
+    // Separador
+    doc.setDrawColor(220);
+    doc.setLineWidth(0.4);
+    doc.line(14, 58, 196, 58);
+
+    // Productos
+    doc.setFontSize(13);
+    doc.text('Productos:', 14, 68);
+
+    doc.setFontSize(11);
+    cart.forEach((item, idx) => {
+      const y = 78 + idx * 8;
+      const nombre = item.name || 'Producto';
+      const cantidad = Number(item.cantidad || 1);
+      const linePrice = (Number(item.price || 0) * cantidad).toFixed(2);
+      // Si se salta la página, añadir lógica de paginado sencillo
+      if (y > 280) {
+        doc.addPage();
+        doc.setFontSize(11);
+      }
+      doc.text(`${idx + 1}. ${nombre} (x${cantidad}) — S/${linePrice}`, 14, y);
     });
 
-    // Total a pagar
-    const totalYPosition = 120 + (cart.length * 10) + 10;
-    doc.setFontSize(16);
-    doc.setTextColor(40, 40, 40); // Gris oscuro
-    doc.text(`Total a Pagar: S/${total.toFixed(2)}`, 10, totalYPosition);
+    // Total
+    const totalY = 78 + cart.length * 8 + 10;
+    doc.setFontSize(13);
+    doc.setTextColor(40, 40, 40);
+    doc.text(`Total a Pagar: S/${Number(total || 0).toFixed(2)}`, 14, totalY);
 
-    // Guardar el PDF
+    // Guardar PDF
     doc.save('detalle_compra.pdf');
+
+    // Limpiar carrito y formulario
+    setCart([]);
+    setTotal(0);
+    setCustomerInfo(initialCustomerInfo);
   };
 
-
-
   return (
-    <div className='carrito'>
+    <div className="carrito">
       <h2>Carrito de Compras</h2>
 
-      {/* Verificar si el carrito está vacío */}
-      {cart.length === 0 ? (
-        <p>Tu carrito está vacío.</p>
+      {(!cart || cart.length === 0) ? (
+        <p style={{ textAlign: 'center', color: '#777' }}>Tu carrito está vacío.</p>
       ) : (
         <ul>
-          {cart.map((item, index) => (
-            <li key={index}>
-              {item.name} - Cantidad: {item.cantidad} - Precio: S/{(item.price * item.cantidad).toFixed(2)}
-              <button onClick={() => removeItem(index)}>Eliminar</button>
-            </li>
-          ))}
+          {cart.map((item, index) => {
+            const nombre = item.name || 'Producto';
+            const descripcion = item.description || item.descripcion || '';
+            const cantidad = Number(item.cantidad || 1);
+            const precioUnit = Number(item.price || 0);
+            const subtotal = (cantidad * precioUnit).toFixed(2);
+
+            return (
+              <li key={index}>
+                <div style={{ flex: '1 1 60%', minWidth: '200px' }}>
+                  <strong style={{ display: 'block' }}>{nombre}</strong>
+                  {descripcion && <small style={{ display: 'block', color: '#666' }}>{descripcion}</small>}
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <button onClick={() => updateQuantity(index, -1)} aria-label="disminuir">-</button>
+                    <span style={{ minWidth: '26px', textAlign: 'center' }}>{cantidad}</span>
+                    <button onClick={() => updateQuantity(index, +1)} aria-label="aumentar">+</button>
+                  </div>
+
+                  <div style={{ minWidth: '110px', textAlign: 'right' }}>
+                    <div style={{ fontWeight: 700 }}>S/{subtotal}</div>
+                    <div style={{ fontSize: '12px', color: '#777' }}>S/{precioUnit.toFixed(2)} c/u</div>
+                  </div>
+
+                  <div>
+                    <button onClick={() => removeItem(index)}>Eliminar</button>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       )}
 
-      <h3 className='total-text'>Total: S/{total}</h3>
+      <h3 className="total-text">Total: S/{Number(total || 0).toFixed(2)}</h3>
 
-      {/* Formulario para datos del cliente */}
-      <div className='formulario'>
+      <div className="formulario">
         <h2>Completa tus Datos</h2>
+
         <label>
           Nombre:
-          <input type="text" name="nombre" value={customerInfo.nombre} onChange={handleCustomerChange} />
-        </label><br />       
+          <input
+            type="text"
+            name="nombre"
+            value={customerInfo.nombre}
+            onChange={handleCustomerChange}
+            placeholder="Tu nombre"
+          />
+        </label>
+
         <label>
           Descripcion:
-          <input type="text" name="descripcion" value={customerInfo.descripcion} onChange={handleCustomerChange} />
-        </label><br />
+          <input
+            type="text"
+            name="descripcion"
+            value={customerInfo.descripcion}
+            onChange={handleCustomerChange}
+            placeholder="Comentarios / referencia"
+          />
+        </label>
 
-        {/* Nuevo: Selección del método de pago */}
-        <h3 className='texto-pago'>Selecciona tu método de pago:</h3>
         <div className="metodos-pago">
           <label>
-            <input type="radio" name="metodoPago" value="Efectivo" onChange={handlePaymentChange} />
+            <input
+              type="radio"
+              name="metodoPago"
+              value="Efectivo"
+              checked={customerInfo.metodoPago === 'Efectivo'}
+              onChange={handlePaymentChange}
+            />
             Efectivo
-          </label><br />
+          </label>
+
           <label>
-            <input type="radio" name="metodoPago" value="Yape" onChange={handlePaymentChange} />
+            <input
+              type="radio"
+              name="metodoPago"
+              value="Yape"
+              checked={customerInfo.metodoPago === 'Yape'}
+              onChange={handlePaymentChange}
+            />
             Yape
-          </label><br />          
+          </label>
+
           <label>
-            <input type="radio" name="metodoPago" value="Transferencia" onChange={handlePaymentChange} />
+            <input
+              type="radio"
+              name="metodoPago"
+              value="Transferencia"
+              checked={customerInfo.metodoPago === 'Transferencia'}
+              onChange={handlePaymentChange}
+            />
             Transferencia
-          </label><br />
+          </label>
         </div>
 
-        <button onClick={generarPDF}>Generar PDF</button>
+        <button onClick={generarPDF} disabled={!cart || cart.length === 0}>Generar Orden en PDF</button>
       </div>
     </div>
   );

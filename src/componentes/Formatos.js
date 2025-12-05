@@ -12,6 +12,12 @@ import doc9 from "../imagenes/doc9.png";
 import doc10 from "../imagenes/doc10.png";
 import doc11 from "../imagenes/doc11.png";
 import doc12 from "../imagenes/doc12.png";
+import doc13 from "../imagenes/doc13.png";
+import doc14 from "../imagenes/doc14.png";
+import doc15 from "../imagenes/doc15.png";
+import doc16 from "../imagenes/doc16.png";
+import doc17 from "../imagenes/doc17.png";
+import doc18 from "../imagenes/doc18.png";
 import Swal from "sweetalert2";
 
 
@@ -87,13 +93,13 @@ function Formatos({ cart, setCart, total, setTotal }) {
     {
       name: "Cuaderno de control",
       image: doc7,
-      price: "S/250",
-      p: "Cantidad 100 unid.",
+      price: "S/2000",
+      p: "Cantidad 1000 unid.",
     },
     {
-      name: "Folder publicitario",
+      name: "Folder publicitario + Bolsillo",
       image: doc8,
-      price: "S/1200",
+      price: "S/1800",
       p: "Cantidad 1000 unid.",
     },
     {
@@ -117,7 +123,43 @@ function Formatos({ cart, setCart, total, setTotal }) {
     {
       name: "Programas festivos",
       image: doc12,
-      price: "S/560",
+      price: "S/640",
+      p: "Cantidad 1000 unid.",
+    },
+    {
+      name: "Recetarios a color",
+      image: doc13,
+      price: "S/270",
+      p: "Cantidad 1000 unid.",
+    },
+    {
+      name: "Control de vacunación",
+      image: doc14,
+      price: "S/400",
+      p: "Cantidad 1000 unid.",
+    },
+     {
+      name: "Tarjeta vacunación triptico",
+      image: doc15,
+      price: "S/600",
+      p: "Cantidad 1000 unid.",
+    },
+    {
+      name: "Calendario Personalizado 50x35",
+      image: doc16,
+      price: "S/1000",
+      p: "Cantidad 1000 unid.",
+    },
+    {
+      name: "Calendario de escritorio",
+      image: doc17,
+      price: "S/1500",
+      p: "Cantidad 100 unid.",
+    },
+    {
+      name: "Bingos",
+      image: doc18,
+      price: "S/180",
       p: "Cantidad 1000 unid.",
     },
     

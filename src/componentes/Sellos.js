@@ -169,13 +169,13 @@ function Sellos({ cart, setCart, total, setTotal }) {
     {
       name: "Tinta Trodat",
       image: sello18,
-      price: "S/16",
+      price: "S/15",
       p: "Variedad de colores",
     },
     {
       name: "Tinta Indeleble Shinny",
       image: sello19,
-      price: "S/20",
+      price: "S/25",
       p: "Para superficies de plastico",
     },
     {

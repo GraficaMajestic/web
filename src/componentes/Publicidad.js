@@ -20,6 +20,8 @@ import publi16 from "../imagenes/publi16.png";
 import publi17 from "../imagenes/publi17.png";
 import publi18 from "../imagenes/publi18.png";
 import publi19 from "../imagenes/publi19.png";
+import publi20 from "../imagenes/publi20.png";
+import publi21 from "../imagenes/publi21.png";
 import Swal from "sweetalert2";
 
 
@@ -71,7 +73,7 @@ function Publicidad({ cart, setCart, total, setTotal }) {
     {
       name: "Brochure A4 (2 cuerpos)",
       image: publi2,
-      price: "S/1600",
+      price: "S/1300",
       p: "Cantidad 1000 Unid.",
     },
     {
@@ -95,13 +97,13 @@ function Publicidad({ cart, setCart, total, setTotal }) {
     {
       name: "Gigantografia + Rollscreen",
       image: publi6,
-      price: "S/90",
+      price: "S/140",
       p: "Medida: 2m x 1m",
     },
     {
       name: "Gigantografia + Parante metal",
       image: publi7,
-      price: "S/70",
+      price: "S/90",
       p: "Medida: 2m x 1m",
     },
     {
@@ -113,11 +115,11 @@ function Publicidad({ cart, setCart, total, setTotal }) {
     {
       name: "Vinil laminado + Troquel",
       image: publi9,
-      price: "S/80",
+      price: "S/90",
       p: "Medidas: 1.45m x 95cm",
     },
     {
-      name: "Sticker adhesivo",
+      name: "Sticker adhesivo + Plastificado",
       image: publi10,
       price: "S/280",
       p: "Medidas: 108mm x 165mm",
@@ -125,7 +127,7 @@ function Publicidad({ cart, setCart, total, setTotal }) {
     {
       name: "Imantados publicitarios",
       image: publi11,
-      price: "S/350",
+      price: "S/400",
       p: "Cantidad 1000 unid.",
     },
     {
@@ -161,19 +163,31 @@ function Publicidad({ cart, setCart, total, setTotal }) {
     {
       name: "Tomatodo personalizado 750 ml",
       image: publi17,
-      price: "S/700",
+      price: "S/1800",
       p: "Cantidad 100 unid.",
     },
     {
       name: "Llaveros metalicos",
       image: publi18,
-      price: "S/250",
+      price: "S/450",
       p: "Cantidad 100 unid.",
     },
     {
       name: "Lanyards personalizados",
       image: publi19,
-      price: "S/230",
+      price: "S/250",
+      p: "Cantidad 100 unid.",
+    },
+     {
+      name: "Pulseras Tyvek",
+      image: publi20,
+      price: "S/150",
+      p: "Cantidad 100 unid.",
+    },
+    {
+      name: "Lapiceros publicitarios",
+      image: publi21,
+      price: "S/210",
       p: "Cantidad 100 unid.",
     },
     
